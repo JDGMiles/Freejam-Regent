@@ -1,0 +1,79 @@
+<!DOCTYPE html><html><head><title>Canvas Tranform Experimentation</title>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="shortcut icon" href="favicon.ico">
+<meta name="viewport" content="width=550, initial-scale=1">
+
+</head>
+
+<body>
+	<center>
+
+		<table style="position:absolute; left:10px; top:10px; background-color:black;">
+			<td>
+				<a href="#popup1"><img title="Information" src="../jdgmiles.github.io/questionmark.png" style="width:60px; height:60px"></a><br>
+				<a href="https://twitter.com/jimdgmiles" target=blank_><img title="James Miles on Twitter" src="../jdgmiles.github.io/twitter.png" style="width:60px; height:60px"></a><br>
+				<a href="http://jdgmiles.github.io/" target="_blank"><img title="Projects Page" src="../jdgmiles.github.io/jdgm.png" style="width:60px; height:60px"></a><br>
+			</td>
+		</table>
+
+		<div id="popup1" class="overlay">
+			<div class="popup" style="text-align:center">
+				<a class="close" style="right: 30px;" href="#">&times;</a>
+				<div style="font-family:Georgia; color:white; text-decoration:underline; font-size:55px">Canvas Transform Experimentation</div><br>
+				<span style="font-family:Georgia; font-size:45px; color:white;">A page for experimenting with the six parameters of &ldquo;canvas.transform&rdquo;.<br></span><br>
+			</div>
+		</div>
+
+		<br>
+		<canvas id="canvas" style="padding:0px 80px 0px 80px;"></canvas>
+
+		<br>
+		<textarea id="A">1</textarea> <textarea id="B">0</textarea> <textarea id="C">0</textarea> <textarea id="D">1</textarea> <textarea id="E">0</textarea> <textarea id="F">0</textarea>
+
+  </center>
+</body>
+</html>
+
+<script type="text/javascript">
+var field={width:780, height:500};
+var fieldcolor="#AAAAAA";
+var sprite=new Image();
+sprite.src="Freejam Regent.jpg";
+var xpos=field.width/2;
+var ypos=field.height/2;
+
+var a=1,b=0,c=0,d=1,e=0,f=0;
+
+var canvas = document.getElementById("canvas"),
+    ctx = canvas.getContext("2d");
+
+canvas.width = field.width;
+canvas.height = field.height;
+
+function draw(){
+
+	a=document.getElementById("A").value;
+	b=document.getElementById("B").value;
+	c=document.getElementById("C").value;
+	d=document.getElementById("D").value;
+	e=document.getElementById("E").value;
+	f=document.getElementById("F").value;
+
+	ctx.fillStyle=fieldcolor;
+	ctx.fillRect(0, 0, field.width, field.height);
+
+
+	ctx.save();
+	ctx.translate(xpos,ypos);
+	ctx.transform(a,b,c,d,e,f);
+	ctx.drawImage(sprite, -265/2, -370/2);
+	ctx.restore();
+
+	setTimeout(draw, 10);
+
+}
+
+draw();
+
+</script>
